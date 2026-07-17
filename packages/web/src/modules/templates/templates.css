@@ -1,0 +1,433 @@
+/* FILE: packages/web/src/modules/templates/templates.css */
+/* VERSION: 2.13.0 */
+/* START_MODULE_CONTRACT
+   PURPOSE: Styles for the template list and editor matching VK UI design
+   SCOPE: Layout classes, grid styling, template card hover effects, custom button styles, and editor form layouts
+   DEPENDS: none
+   LINKS: M-TEMPLATES
+   ROLE: RUNTIME
+   MAP_MODE: NONE
+END_MODULE_CONTRACT */
+
+/* START_MODULE_MAP
+   templates-layout          - flex container wrapping templates views and sidebar
+   templates-main            - main column for templates list and editor (flex: 3)
+   templates-sidebar         - placeholder column matching Send sidebar layout (flex: 2)
+   template-list-container   - main container for the template list tab
+   template-grid             - grid wrapper for displaying template cards
+   template-card             - single template card container with hover highlight
+   template-card-body        - scrollable content preview block inside a card
+   template-editor-container - main container for template create/edit form
+END_MODULE_MAP */
+
+
+.templates-layout {
+  display: flex;
+  align-items: stretch;
+  gap: 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.templates-main {
+  flex: 3;
+  min-width: 0;
+}
+
+.templates-sidebar {
+  flex: 2;
+  min-width: 280px;
+  visibility: hidden;
+}
+
+@media (max-width: 768px) {
+  .templates-layout {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .templates-sidebar {
+    display: none;
+  }
+}
+
+.template-list-container,
+.template-editor-container {
+  padding: 0;
+  container-type: inline-size;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif !important;
+}
+
+.template-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  background-color: #ffffff;
+  border: 1px solid #e7e8ec;
+  border-radius: 8px;
+  padding: 16px 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  box-sizing: border-box;
+}
+
+.template-list-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #2c2d2e;
+  margin: 0;
+}
+
+.template-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@container (min-width: 720px) {
+  .template-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@container (max-width: 560px) {
+  .template-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.template-card {
+  border: 1px solid #e7e8ec;
+  border-radius: 8px;
+  padding: 16px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: border-color 0.22s ease-in-out, box-shadow 0.22s ease-in-out, transform 0.22s ease-in-out;
+}
+
+.template-card:hover {
+  border-color: #2688eb;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(38, 136, 235, 0.06);
+  transform: translateY(-2px);
+}
+
+.template-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.template-card-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #2c2d2e;
+}
+
+.template-card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.template-icon-btn {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 14px;
+  transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+  outline: none;
+}
+
+.template-goto-submit-btn {
+  background: #ebf2fa !important;
+  color: #2688eb !important;
+}
+
+.template-goto-submit-btn:hover {
+  background: #e1ecf7 !important;
+  color: #1c7ad9 !important;
+}
+
+.template-goto-submit-btn:active {
+  transform: scale(0.9) !important;
+}
+
+.template-edit-btn {
+  background: #ebf2fa !important;
+  color: #2688eb !important;
+}
+
+.template-edit-btn:hover {
+  background: #e1ecf7 !important;
+  color: #1c7ad9 !important;
+}
+
+.template-edit-btn:active {
+  transform: scale(0.9) !important;
+}
+
+.template-duplicate-btn {
+  background: #ebf2fa !important;
+  color: #2688eb !important;
+}
+
+.template-duplicate-btn:hover {
+  background: #e1ecf7 !important;
+  color: #1c7ad9 !important;
+}
+
+.template-duplicate-btn:active {
+  transform: scale(0.9) !important;
+}
+
+.template-delete-btn {
+  background: #faebeb !important;
+  color: #ff3b30 !important;
+}
+
+.template-delete-btn:hover {
+  background: #fbe3e3 !important;
+  color: #e5352c !important;
+}
+
+.template-delete-btn:active {
+  transform: scale(0.9) !important;
+}
+
+/* MODIFIED_BY_ANTIGRAVITY: added max-height and overflow-y to allow scrolling of large templates */
+.template-card-body {
+  color: #2c2d2e;
+  font-size: 14px;
+  line-height: 1.4;
+  flex-grow: 1;
+  background-color: #f2f3f5;
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 8px;
+  box-sizing: border-box;
+  white-space: pre-wrap;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.template-btn-primary {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: #2688eb;
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  font-family: inherit;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.template-btn-primary:hover:not(:disabled) {
+  background: #1c7ad9;
+}
+
+.template-btn-primary:active:not(:disabled) {
+  transform: scale(0.98);
+  background: #156ec0;
+}
+
+.template-btn-primary:disabled {
+  background: #a0c7f2;
+  color: #ffffff;
+  cursor: not-allowed;
+}
+
+.template-btn-secondary {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: #f2f3f5;
+  color: #2688eb;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  font-family: inherit;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.template-btn-secondary:hover {
+  background: #ebecf0;
+}
+
+.template-btn-secondary:active {
+  transform: scale(0.98);
+  background: #e1e3e6;
+}
+
+/* Editor styled as a clean VK block */
+.template-editor-container {
+  background-color: #ffffff;
+  border: 1px solid #e7e8ec;
+  border-radius: 8px;
+  padding: 24px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.template-editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.template-editor-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex-grow: 1;
+}
+
+.template-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-weight: 500;
+  color: #2c2d2e;
+}
+
+.template-field span {
+  font-size: 13px;
+  font-weight: 500;
+  color: #818c99;
+  margin-bottom: 2px;
+}
+
+.template-field-flex {
+  flex-grow: 1;
+}
+
+.template-field input {
+  padding: 14px 16px;
+  border: 1px solid #bcc3d0;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #2c2d2e;
+  outline: none;
+  background-color: #f2f3f5;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.template-field input:focus {
+  border-color: #2688eb;
+  background-color: #ffffff;
+}
+
+.template-field textarea {
+  padding: 14px 16px;
+  border: 1px solid #bcc3d0;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #2c2d2e;
+  outline: none;
+  background-color: #f2f3f5;
+  resize: vertical;
+  height: calc(100vh - 330px);
+  min-height: 150px;
+  max-height: calc(100vh - 300px);
+  flex-grow: 1;
+  font-family: inherit;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.template-field textarea:focus {
+  border-color: #2688eb;
+  background-color: #ffffff;
+}
+
+.template-error-banner {
+  border: 1px solid #e5a9a9 !important;
+  background-color: #faebeb !important;
+  color: #991b1b !important;
+  padding: 8px 16px !important;
+  border-radius: 8px !important;
+  font-size: 14px !important;
+  margin-bottom: 16px;
+}
+
+/* Mobile: reduce padding, increase touch targets */
+@media (max-width: 768px) {
+  .template-list-container,
+  .template-editor-container {
+    padding: 0 16px;
+  }
+  .template-list-header {
+    padding: 12px 16px;
+  }
+  .template-list-header h2 {
+    font-size: 18px;
+  }
+  .template-card {
+    padding: 12px;
+  }
+  .template-card-title {
+    font-size: 15px;
+  }
+  .template-card-body {
+    font-size: 13px;
+    padding: 10px;
+  }
+  .template-icon-btn {
+    width: 40px;
+    height: 40px;
+  }
+  .template-editor-container {
+    padding: 16px;
+  }
+  .template-editor-header {
+    margin-bottom: 16px;
+  }
+  .template-btn-primary,
+  .template-btn-secondary {
+    min-height: 44px;
+    font-size: 15px;
+  }
+  .template-field input {
+    padding: 14px 16px;
+    font-size: 16px;
+  }
+  .template-field textarea {
+    padding: 14px 16px;
+    font-size: 16px;
+    min-height: 200px;
+    height: calc(100vh - 340px);
+  }
+}
+
+/* START_CHANGE_SUMMARY
+   LAST_CHANGE: [v2.13.0 - Adjust desktop template editor textarea height to calc(100vh - 330px) to prevent container from exceeding viewport and causing scrollbar at 100% zoom]
+   PREVIOUS_CHANGES:
+     - [v2.12.0 - Revert border matching editing fields from template preview body]
+     - [v2.11.0 - Add border matching editing fields to template preview body]
+     - [v2.10.0 - Add templates-layout, templates-main, and templates-sidebar flex styling to narrow templates view/editor on desktop matching submit layout]
+     - [v2.9.2 - Add hover selection highlight and micro-animation transition to template card]
+     - [v2.9.1 - Align template-list-container and template-editor-container to top and left by removing extra desktop padding and matching mobile padding]
+     - [v2.9.0 - Add max-height and overflow-y scrollability support to template card body preview]
+     - [v2.8.1 - Update templates copy (duplicate) and send (goto-submit) buttons to match edit button styling (VKUI-inspired blue color scheme)]
+     - [v2.8.0 - Style templates copy (duplicate) and send (goto-submit) buttons with distinct VKUI-inspired amber and green colors]
+     - [v2.7.0 - Phase-MOBILE-UX: Add appearance:none reset + mobile @media with reduced padding, 44px touch targets, 40px icon buttons]
+END_CHANGE_SUMMARY */

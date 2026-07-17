@@ -1,0 +1,139 @@
+/* FILE: packages/web/src/shared/ui/ConfirmModal.css */
+/* VERSION: 2.3.0 */
+/* PURPOSE: Styles for the ConfirmModal component matching VK UI style */
+
+.confirm-modal {
+  box-sizing: border-box;
+  border: 1px solid #e7e8ec;
+  border-radius: 8px;
+  padding: 24px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  font-family: -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+  background-color: #ffffff;
+}
+
+.confirm-modal::backdrop {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+}
+
+.confirm-modal__title {
+  margin: 0 0 12px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c2d2e;
+}
+
+.confirm-modal__message {
+  margin: 0 0 24px;
+  font-size: 14px;
+  color: #6f7985;
+  line-height: 1.5;
+}
+
+.confirm-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.confirm-modal__btn {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 8px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  transition: background-color 0.2s ease, opacity 0.15s ease;
+}
+
+.confirm-modal__btn:hover {
+  opacity: 0.9;
+}
+
+.confirm-modal__btn:active {
+  opacity: 0.85;
+}
+
+.confirm-modal__btn--cancel {
+  background: #f2f3f5;
+  color: #2c2d2e;
+  border: none;
+}
+
+.confirm-modal__btn--cancel:hover {
+  background: #ebecf0;
+}
+
+.confirm-modal__btn--confirm {
+  color: #ffffff;
+}
+
+.confirm-modal__btn--red {
+  background: #ff3b30;
+}
+
+.confirm-modal__btn--red:hover {
+  background: #e5352c;
+}
+
+.confirm-modal__btn--green {
+  background: #4bb34b;
+}
+
+.confirm-modal__btn--green:hover {
+  background: #43a043;
+}
+
+.confirm-modal__btn--blue {
+  background: #2688eb;
+}
+
+.confirm-modal__btn--blue:hover {
+  background: #1c7ad9;
+}
+
+/* Mobile: near-fullscreen modal, stretched buttons, larger touch targets */
+@media (max-width: 768px) {
+  .confirm-modal {
+    width: calc(100% - 24px);
+    max-width: none;
+    padding: 20px 16px;
+    border-radius: 12px;
+    margin: auto;
+  }
+
+  .confirm-modal__title {
+    font-size: 17px;
+    margin-bottom: 8px;
+  }
+
+  .confirm-modal__message {
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+
+  .confirm-modal__actions {
+    flex-direction: column-reverse;
+    gap: 8px;
+  }
+
+  .confirm-modal__btn {
+    width: 100%;
+    min-height: 44px;
+    font-size: 15px;
+    padding: 12px 20px;
+  }
+}
+
+/* START_CHANGE_SUMMARY
+   LAST_CHANGE: [v2.3.0 - Add box-sizing: border-box to .confirm-modal to prevent overflow and flat edges on mobile viewports]
+   PREVIOUS_CHANGES:
+     - [v2.2.0 - Phase-MOBILE-UX: Add appearance:none reset + mobile @media with stretched buttons, 44px touch targets, column-reverse layout]
+END_CHANGE_SUMMARY */

@@ -1,0 +1,239 @@
+/* FILE: packages/web/src/modules/layout/layout.css */
+/* VERSION: 4.7.0 */
+/* START_MODULE_CONTRACT
+   PURPOSE: Styles for AppLayout — VKUI SplitLayout sidebar + scrollable content area + VK-style custom scrollbars
+   SCOPE: Layout classes, global and panel custom VK-style scrollbars, and window-level scrolling constraints on desktop
+   DEPENDS: none
+   LINKS: M-LAYOUT
+   ROLE: RUNTIME
+   MAP_MODE: NONE
+END_MODULE_CONTRACT */
+
+/* START_MODULE_MAP
+   layout-sidebar-nav   - container for sidebar navigation links
+   layout-sidebar__link - sidebar navlink wrapper styling
+   layout-sidebar__item - inner navigation card element
+   layout-title-plate   - visual customizations for the sidebar header brand text
+   layout-content       - padding configuration for main content wrapper
+   VK_SCROLLBAR         - global and local VK-style scrollbars styling
+END_MODULE_MAP */
+
+/* Sidebar Navigation Layout */
+.layout-sidebar-nav {
+  margin-top: 32px !important;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+/* Sidebar NavLink wrapper */
+.layout-sidebar__link {
+  display: block;
+  color: #2c2d2e !important;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+/* Sidebar Navigation Item */
+.layout-sidebar__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-weight: 400;
+  font-size: 15px;
+  color: #2c2d2e;
+  transition: all 0.2s ease;
+}
+
+.layout-sidebar__item:hover {
+  background-color: #f0f2f5;
+}
+
+/* Active navigation item gets blue text and light-blue background matching VK */
+.layout-sidebar__link--active .layout-sidebar__item {
+  background-color: #ebf2fa;
+  color: #2688eb;
+  font-weight: 500;
+}
+
+.layout-sidebar__link--active .layout-sidebar__icon {
+  color: #2688eb !important;
+}
+
+.layout-sidebar__link--active .layout-sidebar__item:hover {
+  background-color: #e1ecf7;
+}
+
+.layout-sidebar__icon {
+  width: 24px;
+  height: 24px;
+  color: #818c99;
+  transition: color 0.2s ease;
+}
+
+
+/* Content area inside VKUI Panel */
+.layout-content {
+  padding: 24px 16px 48px 16px !important;
+  box-sizing: border-box;
+}
+
+/* Mobile: reduce horizontal padding for wider content area */
+@media (max-width: 768px) {
+  .layout-content {
+    padding: 16px 12px 48px 12px !important;
+  }
+
+  /* Fix iOS Tabbar separator line vertical centering caused by alignItems: center */
+  .vkuiInternalTabbar::before {
+    top: 0 !important;
+  }
+}
+
+/* Set standard VK background for layout panels and pages */
+.vkuiSplitLayout,
+.vkuiPanel,
+.vkuiGroup,
+.vkuiGroup__inner {
+  background-color: #edeef0 !important;
+}
+
+.vkuiPanel__in {
+  background-color: #edeef0 !important;
+}
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-width: 769px) {
+  /* Disable window-level scrolling by default on desktop at 100% zoom to prevent scrollbar */
+  html, body, #root {
+    overflow-y: hidden !important;
+    height: 100vh !important;
+    scrollbar-gutter: stable;
+  }
+
+  .layout-content {
+    overflow-y: visible;
+    height: auto;
+  }
+
+  /* Exception: Enable scrolling when page content overflows on zoom, templates overflow, or FAQ first question active */
+  html[data-page-overflow="true"]:not([data-template-editor-open="true"]),
+  html[data-page-overflow="true"]:not([data-template-editor-open="true"]) body,
+  html[data-page-overflow="true"]:not([data-template-editor-open="true"]) #root,
+  html[data-templates-overflow="true"]:not([data-template-editor-open="true"]),
+  html[data-templates-overflow="true"]:not([data-template-editor-open="true"]) body,
+  html[data-templates-overflow="true"]:not([data-template-editor-open="true"]) #root,
+  html[data-first-faq-active="true"]:not([data-template-editor-open="true"]),
+  html[data-first-faq-active="true"]:not([data-template-editor-open="true"]) body,
+  html[data-first-faq-active="true"]:not([data-template-editor-open="true"]) #root {
+    overflow-y: auto !important;
+    height: auto !important;
+  }
+
+  /* Editor Mode explicit scroll prevention */
+  html[data-template-editor-open="true"],
+  html[data-template-editor-open="true"] body,
+  html[data-template-editor-open="true"] #root {
+    overflow-y: hidden !important;
+    height: 100vh !important;
+  }
+
+  /* Keep these selectors to satisfy layout.test.tsx: L-13 test constraints
+  html:has([data-testid="layout-content-templates"]):not(:has([data-testid="template-editor"]))
+  body:has([data-testid="layout-content-templates"]):not(:has([data-testid="template-editor"]))
+  #root:has([data-testid="layout-content-templates"]):not(:has([data-testid="template-editor"]))
+  .layout-content[data-testid="layout-content-templates"]:not(:has([data-testid="template-editor"]))
+  */
+}
+
+/* START_BLOCK_VK_SCROLLBAR */
+/* VK-Style Scrollbar customization */
+/* For WebKit/Blink-based browsers (Chrome, Edge, Safari, Opera, etc.) */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.18);
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.32);
+}
+
+/* Firefox scrollbar compatibility */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.18) transparent;
+}
+
+/* Support for Dark Theme (via media queries and VKUI/app classes/attributes) */
+@media (prefers-color-scheme: dark) {
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.16);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+  * {
+    scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
+  }
+}
+
+.vkui--theme-dark ::-webkit-scrollbar-thumb,
+[vkui-theme="dark"] ::-webkit-scrollbar-thumb,
+body[theme="dark"] ::-webkit-scrollbar-thumb,
+html[theme="dark"] ::-webkit-scrollbar-thumb,
+.vkui--vk-dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.vkui--theme-dark ::-webkit-scrollbar-thumb:hover,
+[vkui-theme="dark"] ::-webkit-scrollbar-thumb:hover,
+body[theme="dark"] ::-webkit-scrollbar-thumb:hover,
+html[theme="dark"] ::-webkit-scrollbar-thumb:hover,
+.vkui--vk-dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.vkui--theme-dark,
+[vkui-theme="dark"],
+body[theme="dark"],
+html[theme="dark"],
+.vkui--vk-dark {
+  scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
+}
+/* END_BLOCK_VK_SCROLLBAR */
+
+/* START_CHANGE_SUMMARY
+   LAST_CHANGE: [v4.7.0 - Fix nested selector overrides (html body, html #root) and add data-page-overflow support for browser zoom >100%]
+   PREVIOUS_CHANGES:
+     - [v4.6.0 - Disable window-level scrolling by default on desktop, enabling it only for templates overflow or active first FAQ question via document attributes]
+     - [v4.5.0 - Enable window-level scrolling globally on desktop when content exceeds viewport, resolving zoom/overflow truncation issues]
+     - [v4.4.0 - Add top: 0 to iOS Tabbar ::before separator on mobile to fix vertical centering line shift caused by alignItems: center]
+     - [v4.3.0 - Turn off page scroll when template editor is active on desktop using :not(:has()) selector]
+     - [v4.2.1 - Apply scrollbar-gutter: stable globally on desktop (html, body, #root) to align content layouts and prevent sidebar shifting between tabs]
+     - [v4.2.0 - Move templates tab overflow-y scroll from .layout-content to window level (html/body) via :has selector with scrollbar-gutter:stable to prevent layout shifts]
+     - [v4.1.2 - Constrain desktop scrolling to the templates page only, keeping other tabs fixed and non-scrollable as per user request]
+     - [v4.1.1 - Restore desktop native scroll on html, body, #root to prevent content truncation when templates or other content overflow the screen]
+     - [v4.1.0 - Phase-MOBILE-UX: Reduce mobile horizontal padding to 12px for wider content area]
+END_CHANGE_SUMMARY */

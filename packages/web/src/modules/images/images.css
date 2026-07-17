@@ -1,0 +1,234 @@
+/* FILE: packages/web/src/modules/images/images.css */
+/* VERSION: 4.3.1 */
+/* PURPOSE: Styles for the ImageUploader matching VK UI design */
+
+.image-uploader {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.image-uploader__grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Individual Image Slot (covers preview, upload button, empty dashed box) */
+.image-slot {
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
+}
+
+/* 1. Upload Button Slot matching VK UI */
+.image-upload-slot {
+  border: 1px dashed #bcc3d0;
+  background-color: #f5f6f8;
+  cursor: pointer;
+  padding: 8px;
+  text-align: center;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.image-upload-slot:hover {
+  background-color: #f2f8ff;
+  border-color: #2688eb;
+}
+
+.image-upload-slot__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.image-upload-slot__text {
+  font-size: 11px;
+  font-weight: 600;
+  color: #2688eb;
+  line-height: 1.3;
+  word-wrap: break-word;
+  max-width: 90%;
+  /* Force vertical centering of text details */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.image-upload-slot__icon {
+  width: 24px !important;
+  height: 24px !important;
+  color: #2688eb;
+}
+
+/* 2. Empty dashed placeholder slots */
+.image-empty-slot {
+  border: 1px dashed #bcc3d0;
+  background-color: #f5f6f8;
+  cursor: default !important;
+  pointer-events: none;
+}
+
+/* 3. Preview Slots */
+.image-preview-slot {
+  border: 1px solid #e7e8ec;
+  background-color: #ffffff;
+}
+
+.image-slot__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-slot__delete {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: #ffffff;
+  border: 1px solid #d3d9de;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 500;
+  color: #818c99;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
+  outline: none;
+}
+
+.image-slot__delete:hover {
+  background-color: #f2f3f5;
+  color: #2c2d2e;
+  transform: scale(1.05);
+}
+
+.image-slot__delete:active {
+  transform: scale(0.95);
+}
+
+.image-slot__actions {
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 2px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #e7e8ec;
+  border-radius: 8px;
+  padding: 2px 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  box-sizing: border-box;
+}
+
+.image-slot__move-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  color: #818c99;
+  padding: 0 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 18px;
+  box-sizing: border-box;
+  outline: none;
+  transition: opacity 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+}
+
+.image-slot__move-btn:hover:not(:disabled) {
+  background-color: #f0f2f5;
+  color: #2c2d2e;
+  border-radius: 4px;
+}
+
+.image-slot__move-btn:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+
+/* Mobile responsive layout */
+@media (max-width: 600px) {
+  .image-uploader__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+}
+
+/* START_BLOCK_MOBILE_OVERRIDES */
+@media (max-width: 768px) {
+  .image-uploader {
+    margin-bottom: var(--safe-area-inset-bottom, 0px) !important;
+  }
+  .image-slot__delete {
+    width: 26px !important;
+    height: 26px !important;
+    font-size: 16px !important;
+  }
+  .image-slot__move-btn {
+    height: 24px !important;
+    min-width: 24px !important;
+    font-size: 14px !important;
+  }
+  .image-slot__actions {
+    padding: 4px 6px !important;
+  }
+}
+/* END_BLOCK_MOBILE_OVERRIDES */
+
+/* START_BLOCK_IMAGE_UPLOAD_LOADING */
+.image-upload-slot__spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(38, 136, 235, 0.2);
+  border-top-color: #2688eb;
+  border-radius: 50%;
+  animation: image-upload-spin 0.8s linear infinite;
+}
+
+@keyframes image-upload-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.image-upload-slot--loading {
+  cursor: default !important;
+  background-color: #f5f6f8 !important;
+  border-color: #bcc3d0 !important;
+}
+
+.image-upload-slot--loading:hover {
+  background-color: #f5f6f8 !important;
+  border-color: #bcc3d0 !important;
+}
+/* END_BLOCK_IMAGE_UPLOAD_LOADING */
+
+/* START_CHANGE_SUMMARY
+   LAST_CHANGE: [v4.3.1 - Add styles for upload loading spinner and disabled state]
+   PREVIOUS_CHANGES:
+     - [v4.3.0 - Phase-MOBILE-ADAPT: Add safe-area margin-bottom and mobile button touch target sizing (24px/26px)]
+END_CHANGE_SUMMARY */

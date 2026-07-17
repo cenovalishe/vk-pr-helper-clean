@@ -1,0 +1,692 @@
+/* FILE: packages/web/src/modules/submit/submit.css */
+/* VERSION: 8.16.0 */
+/* START_MODULE_CONTRACT
+   PURPOSE: Styles for the SubmitForm and steps matching VK UI style
+   SCOPE: Layout classes, sidebar, forms, and steps styling
+   DEPENDS: none
+   LINKS: M-SUBMIT
+   ROLE: RUNTIME
+   MAP_MODE: NONE
+   CHANGE_SUMMARY: Adjusted sidebar height to prevent 100% zoom scroll
+END_MODULE_CONTRACT */
+
+.submit-layout {
+  display: flex;
+  align-items: stretch;
+  gap: 24px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 24px; /* aligned with sidebar bottom offset */
+}
+
+.submit-main {
+  flex: 3;
+  min-width: 0; /* Enable flex-truncation inside main form */
+}
+
+/* Defuse main card to let individual steps be standalone rounded cards */
+.submit-card {
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  width: 100%;
+}
+
+.submit-sidebar {
+  flex: 2;
+  min-width: 280px;
+  position: sticky;
+  top: 24px;
+  height: calc(100vh - 100px); /* adjusted height to fit viewport and prevent page scrolling at 100% zoom */
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif !important;
+}
+
+.submit-sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Make sidebar container card transparent so categories stand on main background */
+.submit-sidebar-card {
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Permanent bottom border line for the sidebar panel, aligning with main form bottom */
+.submit-sidebar-card::after {
+  content: "";
+  display: block;
+  height: 1px;
+  background-color: #e7e8ec;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.submit-sidebar-card > .submit-sidebar__title {
+  flex-shrink: 0;
+}
+
+.submit-sidebar-card > .community-list {
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  margin-right: 0;
+  padding-right: 0;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.submit-sidebar-card > .community-list::-webkit-scrollbar {
+  display: none;          /* Chrome, Safari and Opera */
+}
+
+/* Style the sidebar title as its own separate modular white card */
+.submit-sidebar__title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 8px 0; /* 8px bottom margin, 0 right margin to align with un-shrunk list */
+  color: #2c2d2e;
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid #e7e8ec;
+  border-radius: 8px;
+  padding: 12px 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  box-sizing: border-box;
+}
+
+/* Add search/community icon from VK Assets before sidebar title */
+.submit-sidebar__title::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232688eb'%3E%3Cpath d='M15.42 16.84a8 8 0 1 1 1.42-1.42l4.87 4.88a1 1 0 0 1-1.42 1.42l-4.87-4.88zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  flex-shrink: 0;
+}
+
+/* Submit Header section as a separate rounded card (spacious layout, close gaps) */
+.submit-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 4px;
+  text-align: center;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border: 1px solid #e7e8ec;
+  border-radius: 8px;
+  padding: 22px; /* aligned step padding */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.submit-header__icon {
+  width: 48px !important;
+  height: 48px !important;
+  color: #2688eb;
+  margin-bottom: 8px;
+}
+
+.submit-header__title {
+  font-size: 26px;
+  font-weight: 600;
+  color: #2c2d2e;
+  margin: 0 0 6px 0;
+  letter-spacing: -0.3px;
+}
+
+.submit-header__subtitle {
+  font-size: 14px;
+  color: #818c99;
+  margin: 0;
+}
+
+/* Form Steps Layout (modules aligned close together) */
+.submit-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-sizing: border-box;
+}
+
+/* Each step is an individual rounded card (spacious padding) */
+.submit-step {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border: 1px solid #e7e8ec;
+  border-radius: 8px;
+  padding: 22px; /* aligned step padding */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.step-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.step-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  color: #2c2d2e;
+}
+
+.step-hint {
+  font-size: 13px;
+  color: #818c99;
+  margin: 0 0 4px 0;
+}
+
+/* VK UI styled text inputs (spacious padding, VKUI sky-blue accent) */
+.submit-input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #bcc3d0;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  background-color: #f2f3f5;
+  color: #2c2d2e;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.submit-input:focus {
+  border-color: #2688eb;
+  background-color: #ffffff;
+}
+
+.submit-input--empty {
+  border: 1px dashed #bcc3d0 !important;
+  background-color: #f5f6f8 !important;
+}
+
+.submit-input--empty:hover {
+  border-color: #2688eb !important;
+  background-color: #f2f8ff !important;
+}
+
+/* Custom dropdown select wrappers */
+.select-container {
+  width: 100%;
+}
+
+.submit-select {
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  outline: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  color: #2c2d2e;
+}
+
+.submit-select--placeholder {
+  color: #818c99;
+}
+
+.ui-custom-select select.submit-select--placeholder {
+  color: #818c99 !important;
+}
+
+.ui-custom-select.submit-select-container--empty select {
+  border: 1px dashed #bcc3d0 !important;
+  background-color: #f5f6f8 !important;
+}
+
+.ui-custom-select.submit-select-container--empty select:hover {
+  border-color: #2688eb !important;
+  background-color: #f2f8ff !important;
+}
+
+.ui-custom-select.submit-select-container--empty select:focus {
+  border: 1px solid #2688eb !important;
+  background-color: #ffffff !important;
+}
+
+.ui-custom-select.submit-select-container--empty .vkuiFormField__host {
+  border: 1px dashed #bcc3d0 !important;
+  background: #f5f6f8 !important;
+  background-color: #f5f6f8 !important;
+}
+
+.ui-custom-select.submit-select-container--empty .vkuiFormField__host:hover {
+  border-color: #2688eb !important;
+  background: #f2f8ff !important;
+  background-color: #f2f8ff !important;
+}
+
+.ui-custom-select.submit-select-container--empty .vkuiFormField__host:focus-within {
+  border: 1px solid #2688eb !important;
+  background: #ffffff !important;
+}
+
+.submit-select option {
+  color: #2c2d2e;
+}
+
+.submit-select option:disabled {
+  color: #818c99;
+}
+
+/* Textarea elements (spacious height) */
+.textarea-container {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.submit-textarea {
+  width: 100%;
+  height: 150px; /* aligned height */
+  border: 1px solid #bcc3d0;
+  border-radius: 8px;
+  padding: 16px;
+  font-size: 16px;
+  font-family: inherit;
+  outline: none;
+  background-color: #f2f3f5;
+  color: #2c2d2e;
+  resize: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.submit-textarea:focus {
+  border-color: #2688eb;
+  background-color: #ffffff;
+}
+
+.submit-textarea--empty {
+  border: 1px dashed #bcc3d0 !important;
+  background-color: #f5f6f8 !important;
+}
+
+.submit-textarea--empty:hover {
+  border-color: #2688eb !important;
+  background-color: #f2f8ff !important;
+}
+
+.submit-textarea--empty:focus {
+  border: 1px solid #2688eb !important;
+  background-color: #ffffff !important;
+}
+
+/* No Templates Overlay state (spacious height) */
+.no-templates-wrapper {
+  position: relative;
+  width: 100%;
+  height: 150px; /* aligned height */
+  box-sizing: border-box;
+}
+
+.submit-textarea--disabled {
+  background-color: #f2f3f5;
+  border: 1px solid #e1e3e6;
+  cursor: not-allowed;
+  height: 150px; /* aligned height */
+  opacity: 0.6 !important;
+}
+
+.no-templates-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background-color: rgba(255, 255, 255, 0.4);
+  box-sizing: border-box;
+}
+
+.no-templates-text {
+  font-size: 14px;
+  color: #818c99;
+  font-weight: 500;
+}
+
+.no-templates-btn {
+  background-color: #f2f3f5 !important;
+  color: #2688eb !important;
+  border-radius: 8px !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  padding: 6px 18px !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: background-color 0.2s ease !important;
+}
+
+.no-templates-btn:hover {
+  background-color: #ebecf0 !important;
+}
+
+.no-templates-btn:active {
+  background-color: #e1e3e6 !important;
+}
+
+/* Error Banner styling */
+.submit-error-banner {
+  border: 1px solid #e5a9a9;
+  border-radius: 8px;
+  background-color: #faebeb;
+  padding: 8px 16px;
+  margin-top: 12px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: #991b1b;
+}
+
+.submit-error-banner__title {
+  font-weight: 600;
+  margin: 0;
+}
+
+.submit-error-banner__subtitle {
+  margin: 0;
+}
+
+/* Left sidebar error variant styling */
+.submit-error-banner--sidebar {
+  margin: 16px 12px 12px 12px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  border: 1px solid #e5a9a9;
+}
+
+/* Actions styling as a separate rounded card (spacious layout, close gaps) */
+.submit-actions-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 4px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border: 1px solid #e7e8ec;
+  border-radius: 8px;
+  padding: 22px; /* aligned padding matching submit-step */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.submit-send-btn {
+  background-color: #2688eb !important;
+  border: none !important;
+  color: #ffffff !important;
+  border-radius: 8px !important;
+  font-size: 15px !important;
+  padding: 10px 32px !important;
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.submit-send-btn:hover:not(:disabled) {
+  background-color: #1c7ad9 !important;
+}
+
+.submit-send-btn:active:not(:disabled) {
+  transform: scale(0.98);
+  background-color: #156ec0 !important;
+}
+
+.submit-send-btn:disabled {
+  background-color: #a0c7f2 !important;
+  color: #ffffff !important;
+  cursor: not-allowed;
+}
+
+/* Desktop and tablet+ responsive layout error placement rules and flex height stretching */
+@media (min-width: 769px) {
+  .submit-error-banner--inline {
+    display: none !important;
+  }
+  .submit-error-banner--sidebar {
+    display: flex !important;
+  }
+
+  .submit-main {
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+  }
+
+  .submit-card {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .submit-steps {
+    flex-grow: 1;
+  }
+
+  .step-text {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .step-text > .textarea-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .step-text .submit-textarea,
+  .step-text .no-templates-wrapper,
+  .step-text .submit-textarea--disabled {
+    height: 100% !important;
+    flex-grow: 1;
+  }
+}
+
+/* StepImages layout adjustments to vertical-expand the text area */
+.step-images {
+  gap: 0px !important;
+  padding: 12px 22px 14px 22px !important;
+}
+
+.step-images .step-header {
+  margin-bottom: 2px !important;
+}
+
+.step-images .vkuiFormItem__top {
+  padding-top: 0px !important;
+  padding-bottom: 4px !important;
+}
+
+/* Mobile responsive layout */
+@media (max-width: 768px) {
+  .submit-layout {
+    flex-direction: column;
+    padding: 0 16px;
+    gap: 16px;
+  }
+  .submit-card {
+    padding: 0 !important;
+  }
+  .submit-header {
+    margin-bottom: 16px;
+    padding: 16px;
+  }
+  .submit-header__title {
+    font-size: 20px;
+  }
+  .submit-header__icon {
+    width: 36px !important;
+    height: 36px !important;
+    margin-bottom: 4px;
+  }
+  .submit-step {
+    padding: 16px;
+  }
+  .step-title {
+    font-size: 16px;
+  }
+  .step-hint {
+    font-size: 14px;
+  }
+  .submit-actions-row {
+    padding: 16px;
+  }
+
+  .submit-mobile-menu-btn {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #2688eb;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+  }
+
+  .submit-mobile-menu-btn:active {
+    background-color: rgba(38, 136, 235, 0.1);
+  }
+
+  .submit-mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1000000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    display: flex;
+    justify-content: flex-end;
+    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif !important;
+  }
+
+  .submit-mobile-menu-overlay--open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .submit-mobile-menu {
+    width: 85%;
+    max-width: 320px;
+    height: 100%;
+    background: #ffffff;
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    box-shadow: -2px 0 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .submit-mobile-menu-overlay--open .submit-mobile-menu {
+    transform: translateX(0);
+  }
+
+  .submit-mobile-menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    border-bottom: 1px solid #e7e8ec;
+  }
+
+  .submit-mobile-menu-header h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c2d2e;
+    display: flex;
+    align-items: center;
+  }
+
+  .submit-mobile-menu-header h2::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232688eb'%3E%3Cpath d='M15.42 16.84a8 8 0 1 1 1.42-1.42l4.87 4.88a1 1 0 0 1-1.42 1.42l-4.87-4.88zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+    flex-shrink: 0;
+  }
+
+  .submit-mobile-menu-close {
+    background: transparent;
+    border: none;
+    color: #818c99;
+    padding: 8px;
+    margin: -8px;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .submit-mobile-menu-close:active {
+    background-color: #f2f3f5;
+  }
+
+  .submit-mobile-menu-content {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 16px;
+  }
+
+  .submit-sidebar__title {
+    margin: 0 0 16px 0 !important; /* reset margin on mobile */
+  }
+  .submit-error-banner--inline {
+    display: flex !important;
+  }
+  .submit-error-banner--sidebar {
+    display: none !important;
+  }
+  .step-images {
+    padding: 12px 16px 14px 16px !important;
+  }
+}
+
+/* START_CHANGE_SUMMARY
+   LAST_CHANGE: [v8.16.0 - Adjust sidebar height to calc(100vh - 100px) to prevent layout container from exceeding viewport and causing scrollbar at 100% zoom]
+   PREVIOUS_CHANGES:
+     - [v8.15.0 - Add system font stack to .submit-mobile-menu-overlay to fix Times New Roman font in mobile search drawer and ensure consistent typography]
+     - [v8.14.0 - Adjust StepImages spacing to vertical-expand the text area above]
+     - [v8.13.0 - Add blue search icon and flex alignment to mobile hamburger menu title "Поисковики" to match desktop style]
+END_CHANGE_SUMMARY */

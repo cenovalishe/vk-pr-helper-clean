@@ -1,0 +1,547 @@
+/* FILE: packages/web/src/modules/tips/tips.css */
+/* VERSION: 2.57.0 */
+/* START_MODULE_CONTRACT
+   PURPOSE: Responsive and premium layout styles for the TipsPage and its subcomponents
+   SCOPE: Header styles, brand info cards, featured communities lists, and accordion FAQs
+   DEPENDS: none
+   LINKS: M-TIPS
+   ROLE: RUNTIME
+   MAP_MODE: NONE
+END_MODULE_CONTRACT */
+
+/* START_MODULE_MAP
+   tips-page                  - main page flex layout
+   tips-main                  - content column
+   tips-sidebar               - layout placeholder
+   tips-header                - header block styles
+   tips-layout-grid           - brand info and community list grid card
+   featured-communities       - communities list
+   faq-accordion              - FAQ accordion wrapper
+END_MODULE_MAP */
+
+.tips-page {
+  display: flex;
+  align-items: stretch;
+  gap: 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.tips-main {
+  flex: 3;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.tips-sidebar {
+  flex: 2;
+  min-width: 280px;
+  visibility: hidden;
+}
+
+.tips-page__container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-sizing: border-box;
+}
+
+.tips-brand-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 8px;
+  height: 100%;
+  width: 100%;
+}
+
+/* Tips Header section as a separate rounded card (spacious layout, close gaps) */
+.tips-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 0px;
+  text-align: center;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border: 1px solid #e7e8ec;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  width: 100%;
+}
+
+.tips-header__icon {
+  width: 40px !important;
+  height: 40px !important;
+  color: #2688eb;
+  margin-bottom: 6px;
+}
+
+.tips-header__title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #2c2d2e;
+  margin: 0 0 4px 0;
+  letter-spacing: -0.3px;
+}
+
+.tips-header__subtitle {
+  font-size: 13.5px;
+  color: #818c99;
+  margin: 0;
+}
+
+.tips-brand-card__title-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: default;
+  width: max-content;
+  min-width: 100%;
+  height: 100%;
+  justify-content: center;
+  padding: 8px;
+  margin: -8px;
+  border-radius: 8px;
+  transition: background-color 0.15s ease;
+  box-sizing: border-box;
+}
+
+.tips-brand-card__title-wrapper:hover {
+  background-color: #f5f6f8;
+}
+
+.tips-brand-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  width: 100%;
+}
+
+.tips-brand-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: #f2f3f5;
+  border: 1px solid #dbdee4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.tips-brand-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  color: #818c99;
+  background-color: transparent;
+  transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.tips-brand-arrow:hover {
+  background-color: #ebecf0;
+  color: #2688eb;
+}
+
+.tips-brand-arrow:active {
+  transform: scale(0.95);
+}
+
+.tips-brand-arrow svg {
+  width: 30px;
+  height: 30px;
+}
+
+.tips-brand-avatar__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tips-brand-avatar__initials {
+  font-size: 21px;
+  font-weight: 600;
+  color: #818c99;
+}
+
+.tips-brand-card__title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #2c2d2e;
+  line-height: 1.1;
+}
+
+.tips-brand-card__left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tips-brand-card__subtitle {
+  margin: 0;
+  margin-left: 4px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #5d6875;
+  max-width: 700px;
+  text-align: left;
+  width: max-content;
+}
+
+
+
+/* Layout Grid representing the combined white card module */
+.tips-layout-grid {
+  display: grid;
+  grid-template-columns: 256px minmax(0, 1fr);
+  align-items: stretch;
+  gap: 16px;
+  background: #ffffff;
+  border: 1px solid #e7e8ec;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  padding: 16px 20px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.tips-communities-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.tips-full-action {
+  width: 100%;
+}
+
+.tips-learn-more-btn {
+  height: 44px !important;
+  font-size: 15px !important;
+}
+
+.tips-faq-section {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Featured Communities list styling matching CommunityItem */
+.featured-communities {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 99%;
+  margin-left: 0;
+  align-items: stretch;
+}
+
+/* Increased size of community rows in HINTS tab */
+.featured-communities .community-item-row {
+  width: 100%; /* Extended to the left to meet in the middle but not touch */
+  padding: 8px 12px;
+  cursor: default;
+}
+
+.featured-communities .community-avatar {
+  width: 32px;
+  height: 32px;
+  margin-left: 5px;
+}
+
+.featured-communities .community-avatar__initials {
+  font-size: 13px;
+}
+
+.featured-communities .community-item__name {
+  font-size: 13.5px;
+  font-weight: 500;
+}
+
+.featured-communities .community-item__description {
+  font-size: 12px !important;
+}
+
+/* Style override for featured communities badges to allow wrapping on narrow viewports */
+.featured-communities [class*="ContentBadge"],
+.featured-communities .vkuiContentBadge {
+  white-space: normal !important;
+  max-width: none !important;
+  line-height: 1.2;
+  padding: 4px 8px !important;
+  text-align: center;
+  display: inline-flex !important;
+  word-break: break-word !important;
+}
+
+.featured-communities .community-item__link {
+  width: 28.8px;
+  height: 28.8px;
+}
+
+/* Faq Accordion styling */
+.faq-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0;
+}
+
+.faq-accordion .vkuiAccordionSummary,
+.faq-accordion [class*="AccordionSummary"] {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+  min-height: auto !important;
+}
+
+.faq-accordion__summary,
+.faq-accordion__summary *,
+.faq-accordion [class*="AccordionSummary"],
+.faq-accordion [class*="AccordionSummary"] *,
+.faq-accordion [class*="SimpleCell"] *,
+.faq-accordion [class*="Headline"] *,
+.faq-accordion [class*="Typography"] *,
+.faq-accordion__question-text {
+  font-weight: 600 !important; /* Semi-bold intermediate weight */
+}
+
+/* Disable default VKUI chevron rotation to prevent skewing custom icons */
+.faq-accordion .vkuiAccordionSummary__icon,
+.faq-accordion .vkuiAccordionSummary__chevron,
+.faq-accordion [class*="AccordionSummary"] [class*="icon"],
+.faq-accordion [class*="AccordionSummary"] svg,
+.faq-accordion [class*="AccordionIcon"] {
+  transform: none !important;
+  transition: none !important;
+}
+
+.faq-accordion__item {
+  border: 1px solid #e7e8ec;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #ffffff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.faq-accordion__item:hover {
+  border-color: #cfd2d9;
+}
+
+.faq-accordion__content {
+  color: #5d6875;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 12px 16px 16px 16px !important;
+  background-color: #fafbfc;
+  border-top: 1px solid #f0f2f5;
+}
+
+.tips-highlight {
+  font-weight: 600;
+  color: #2688eb;
+}
+
+/* Responsive adjustment for intermediate desktop/zoom viewports */
+@media (max-width: 1200px) and (min-width: 769px) {
+  .tips-sidebar {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) and (min-width: 769px) {
+  .tips-layout-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* Responsive adjustment for tablet/mobile viewport */
+@media (max-width: 768px) {
+  .tips-page {
+    flex-direction: column;
+    padding: 0 16px;
+    gap: 16px;
+  }
+  
+  .tips-sidebar {
+    display: none;
+  }
+
+  .tips-page__container {
+    gap: 12px;
+  }
+
+  .tips-header {
+    margin-bottom: 0px;
+    padding: 16px;
+  }
+
+  .tips-header__title {
+    font-size: 20px;
+  }
+
+  .tips-header__icon {
+    width: 36px !important;
+    height: 36px !important;
+    margin-bottom: 4px;
+  }
+
+  .tips-brand-info {
+    padding: 0;
+    align-items: flex-start;
+    text-align: left;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    transform: none !important;
+  }
+
+  .tips-brand-card__title-wrapper {
+    align-items: flex-start;
+    padding: 10px 12px;
+    margin: 0;
+    width: 100%;
+  }
+
+  .tips-brand-card__header {
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
+
+  .tips-brand-card__subtitle {
+    text-align: left;
+    font-size: 14.5px !important;
+    line-height: 1.5 !important;
+    margin-left: 0;
+    width: auto;
+  }
+
+  .tips-brand-avatar {
+    width: 52px !important;
+    height: 52px !important;
+  }
+
+  .tips-brand-avatar__initials {
+    font-size: 20px !important;
+  }
+
+  .tips-brand-card__title {
+    font-size: 22px !important;
+  }
+
+  .tips-brand-arrow {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  .tips-brand-arrow svg {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .tips-layout-grid {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+    gap: 16px;
+    padding: 16px;
+    clip-path: none !important;
+    margin-top: 4px !important;
+    margin-bottom: 4px !important;
+  }
+
+  .tips-faq-section {
+    margin-top: 4px !important;
+  }
+  
+  .tips-communities-list {
+    padding: 0;
+    align-items: stretch;
+  }
+  
+  .featured-communities {
+    padding: 0;
+    align-items: stretch;
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .featured-communities .community-item-row {
+    width: 100% !important;
+    padding: 8px 12px !important;
+  }
+
+  .featured-communities .community-item-row--ours {
+    padding-left: 9px !important;
+  }
+
+  .featured-communities .community-item__link {
+    width: 28.8px !important;
+    height: 28.8px !important;
+  }
+
+  .faq-accordion {
+    padding: 0 0 8px 0 !important;
+  }
+
+  .faq-accordion [class*="SimpleCell__children"],
+  .faq-accordion .vkuiSimpleCell__children,
+  .faq-accordion__question-text {
+    white-space: normal !important;
+    text-overflow: unset !important;
+    overflow: visible !important;
+    word-break: break-word !important;
+  }
+}
+
+/* START_CHANGE_SUMMARY
+   LAST_CHANGE: [v2.57.0 - Allow featured communities badges to wrap text on narrow viewports, preventing overlap with redirect link icon under positive zooms]
+   PREVIOUS_CHANGES:
+     - [v2.56.0 - Hide placeholder sidebar and stack grid into single column on intermediate viewports (769px-1200px) to prevent element overlapping under positive zooms]
+     - [v2.55.0 - Make layout headers, brand cards, and FAQ items compact on desktop to fit page height without scrollbars at 100% zoom, and remove hacky clip-path and scales]
+     - [v2.54.0 - Scale up ONLY the Fahrenheit redirect arrow icon by 1.5x (to 30px inside a 40px container) on mobile, reverting community arrows to their standard size]
+     - [v2.53.0 - Increase mobile redirect arrow container to 40px and SVG icon to native 28px for maximum visibility and accessibility]
+     - [v2.52.0 - Enlarge redirect arrow container to 36px and SVG icon to 24px on mobile for both Fahrenheit and featured communities list]
+     - [v2.51.0 - Revert desktop redirect icon styling and apply 20px arrow override only on mobile; reset .faq-accordion top padding on mobile for 16px uniform gap from details button]
+     - [v2.50.0 - Synchronize gaps between modules to exactly 16px using container gap and margin adjustments, and target community-item__link-icon class on Fahrenheit arrow for identical sizes]
+     - [v2.49.0 - Restore and optimize mobile layout of Tips tab: disable clip-path and diagonal scaling, restore original card element/typography sizes, increase and align redirect arrows vertically, and adjust section spacing]
+     - [v2.48.0 - Compensate for clip-path crop by adding negative top/bottom Y-margins to tips-layout-grid on desktop and mobile]
+     - [v2.47.0 - Decrease container layout gap to 6px, reset header margin-bottom to 0px for compact desktop and mobile module alignment]
+     - [v2.46.0 - Make community description badges single-line, and crop/clip tips-layout-grid background card module by 5% top and bottom using clip-path]
+     - [v2.45.0 - Reduce layout dimensions of Fahrenheit brand card and community row items inside tips-layout-grid by 20% to shrink the card itself; restore outer grid padding to original values]
+     - [v2.44.0 - Reduce top/bottom padding of tips-layout-grid background card module by another 10% (20% total reduction)]
+     - [v2.43.0 - Reduce top/bottom padding of tips-layout-grid background card module by 10%]
+     - [v2.42.0 - Reduce FAQ accordion item gap by 25% from 8px to 6px]
+     - [v2.41.0 - Decrease Fahrenheit redirect icon and highlight scale by 15%]
+     - [v2.40.0 - Expand community rows 3% left by setting width to 99% and margin-left to 0]
+     - [v2.39.0 - Expand community rows 4% right and 2% left by changing width to 96% and margin-left to 3%]
+     - [v2.38.0 - Expand community rows by 5% to the right and shorten by 5% to the left using width 90% and margin-left 5%; add width max-content to title wrapper to fit Fahrenheit highlight around elements; add mobile overrides]
+     - [v2.37.0 - Decrease Fahrenheit block size by 5% using transform scale(0.95); shorten community rows by 10% (width 90%); wrap description badges to two lines with custom max-width]
+     - [v2.35.0 - Restore desktop flex layout width to flex 3 and flex 2 (matching other tabs); use 1fr 1.05fr split with unscaled 76px avatar, 32px title, and compact 8px/10px gaps to prevent overlapping/touching columns]
+     - [v2.29.0 - Adjust tips-layout-grid template columns to 0.85fr 1.15fr to extend community rows into the space freed up by scaling down Fahrenheit block]
+     - [v2.27.0 - Add tips-main and tips-sidebar flex column styling to narrow TipsPage layout on desktop matching submit layout]
+     - [v2.26.0 - Shift community avatars in featured community rows in the Tips tab 5px right to prevent them from being too close to the yellow bar]
+     - [v2.25.0 - Align Fahrenheit mobile redirect arrow size and SVG icon size to match community redirect rows exactly]
+     - [v2.24.0 - Add tips-brand-card__left, align Fahrenheit and featured community rows vertically and horizontally on mobile, add FAQ question text wrap override]
+     - [v2.23.0 - Change cursor on Fahrenheit brand card title wrapper and featured community rows to default, preserving hover highlight but removing clickable look]
+     - [v2.22.0 - Remove max-width constraint from tips-page__container to let content stretch full-width, aligning right edge with Send sidebar/communities right boundary]
+     - [v2.21.0 - Left-align and top-align tips-page__container at 820px max-width on desktop, adjust padding on mobile, removing narrowing placeholder sidebar]
+     - [v2.20.0 - Align TipsPage content container to left and top with flex column and placeholder sidebar on desktop, match submit layout padding on mobile]
+     - [v2.19.0 - Remove scale(1.3) transform zoom from Fahrenheit brand avatar image]
+END_CHANGE_SUMMARY */

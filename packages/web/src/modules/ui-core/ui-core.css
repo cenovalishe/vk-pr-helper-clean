@@ -1,0 +1,238 @@
+/* FILE: packages/web/src/modules/ui-core/ui-core.css */
+/* VERSION: 3.8.0 */
+/* START_MODULE_CONTRACT
+   PURPOSE: Styles for re-usable VKUI-inspired UI components matching VK brand style
+   SCOPE: Cards, buttons, dashed upload placeholders, and custom select overrides
+   DEPENDS: none
+   LINKS: M-UI-CORE
+   ROLE: RUNTIME
+   MAP_MODE: NONE
+END_MODULE_CONTRACT */
+
+/* START_BLOCK_OUTLINE_CARD */
+.ui-outline-card {
+  background-color: #ffffff;
+  border: 1px solid #e7e8ec;
+  border-radius: 8px;
+  padding: 24px;
+  box-sizing: border-box;
+  width: 100%;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
+}
+/* END_BLOCK_OUTLINE_CARD */
+
+/* START_BLOCK_DASHED_BOX */
+.ui-dashed-box {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border: 1px dashed #bcc3d0;
+  border-radius: 8px;
+  background-color: #f5f6f8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.ui-dashed-box:hover {
+  border-color: #2688eb;
+  background-color: #f2f8ff;
+}
+/* END_BLOCK_DASHED_BOX */
+
+/* START_BLOCK_OUTLINE_BUTTON */
+.ui-outline-button {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #2688eb;
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 16px;
+  font-family: inherit;
+  font-weight: 500;
+  padding: 12px 24px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-sizing: border-box;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  outline: none;
+}
+
+.ui-outline-button:hover {
+  background-color: #1c7ad9;
+}
+
+.ui-outline-button:active {
+  transform: scale(0.98);
+  background-color: #156ec0;
+}
+
+.ui-outline-button:disabled {
+  background-color: #a0c7f2;
+  color: #ffffff;
+  cursor: not-allowed;
+}
+/* END_BLOCK_OUTLINE_BUTTON */
+
+/* START_BLOCK_CUSTOM_SELECT */
+/* Custom Select styling to inject VKUI style borders and rounded corners */
+.ui-custom-select {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.ui-custom-select .vkuiFormField__host {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  border: 1px solid #bcc3d0 !important;
+  border-radius: 8px !important;
+  background: #f2f3f5 !important;
+  box-shadow: none !important;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+  min-height: 46px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.ui-custom-select .vkuiCustomSelect__host,
+.ui-custom-select .vkuiSelect {
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+.ui-custom-select .vkuiFormField__host:focus-within {
+  border-color: #2688eb !important;
+  background: #ffffff !important;
+}
+
+.ui-custom-select .vkuiFormField__border,
+.ui-custom-select .vkuiFormField__host::after {
+  display: none !important; /* Hide VKUI default borders */
+}
+
+.ui-custom-select .vkuiSelect__container {
+  background: transparent !important;
+}
+
+/* Custom dropdown icon overlay and vertical alignment */
+.ui-custom-select .vkuiFormField__iconWrapper {
+  align-self: center !important;
+  height: auto !important;
+}
+
+.ui-custom-select .vkuiIcon--dropdown_20 {
+  display: none !important;
+}
+
+.ui-custom-select .vkuiIcon--chevron_down_24 {
+  display: block !important;
+  width: 24px !important;
+  height: 24px !important;
+  color: #818c99 !important;
+}
+
+/* Native select fallback style for custom select wrappers */
+.ui-custom-select select {
+  border: 1px solid #bcc3d0 !important;
+  border-radius: 8px !important;
+  background-color: #f2f3f5 !important;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23818c99'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 12px center !important;
+  background-size: 24px !important;
+  color: #2c2d2e !important;
+  font-size: 16px !important;
+  padding: 12px 36px 12px 16px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  outline: none !important;
+  cursor: pointer !important;
+  transition: border-color 0.2s ease, background-color 0.2s ease !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+}
+
+.ui-custom-select select:focus {
+  border-color: #2688eb !important;
+  background-color: #ffffff !important;
+}
+/* END_BLOCK_CUSTOM_SELECT */
+
+/* START_BLOCK_STEP_INDICATOR */
+.ui-step-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ui-step-indicator__circle {
+  width: 26.4px;
+  height: 26.4px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14.3px;
+  font-weight: 600;
+  box-sizing: border-box;
+  user-select: none;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.ui-step-indicator__circle[data-state="filled"] {
+  background-color: var(--vkui--color_icon_accent, #2688eb);
+  color: var(--vkui--color_text_contrast, #ffffff);
+  border: 1px solid var(--vkui--color_icon_accent, #2688eb);
+}
+
+.ui-step-indicator__circle[data-state="empty"] {
+  background-color: var(--vkui--color_background_light, #f2f3f5);
+  color: var(--vkui--color_text_subhead, #818c99);
+  border: 1px solid #d3d9e2;
+}
+/* END_BLOCK_STEP_INDICATOR */
+
+/* START_BLOCK_MOBILE_OVERRIDES */
+@media (max-width: 768px) {
+  .ui-outline-button {
+    font-size: 16px !important;
+    min-height: 44px !important;
+  }
+
+  .ui-custom-select,
+  .ui-custom-select .vkuiFormField__host,
+  .ui-custom-select .vkuiCustomSelect__host {
+    min-height: 44px !important;
+  }
+
+  .ui-custom-select select {
+    font-size: 16px !important;
+    min-height: 48px !important;
+  }
+
+  .ui-custom-select input,
+  .ui-custom-select .vkuiSelect__container,
+  .ui-custom-select .vkuiCustomSelectInput__container,
+  .ui-custom-select .vkuiTypography {
+    font-size: 16px !important;
+  }
+}
+/* END_BLOCK_MOBILE_OVERRIDES */
+
+/* START_CHANGE_SUMMARY
+   LAST_CHANGE: [v3.8.0 - Remove mobile step indicator size override to match desktop size and make it proportional to headings]
+   PREVIOUS_CHANGES:
+     - [v3.7.0 - Increase StepIndicator sizes by 10% on desktop (24px->26.4px) and mobile (44px->48.4px) per user request]
+     - [v3.6.0 - Add StepIndicator layout, theme states, and 44px mobile touch target overrides for Phase-PR-1]
+     - [v3.5.0 - Center dropdown icon wrapper vertically, hide compact icon, display regular 24x24 chevron icon, and bump version]
+END_CHANGE_SUMMARY */

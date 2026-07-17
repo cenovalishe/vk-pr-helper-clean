@@ -1,0 +1,19 @@
+openapi: 3.0.0
+info:
+  title: VK PR Helper API Gateway
+  version: 2.0.0
+servers:
+- url: https://d5d7aocfv2nkkuacnds1.z2ka767n.apigw.yandexcloud.net
+paths:
+  /{path+}:
+    x-yc-apigateway-any-method:
+      x-yc-apigateway-integration:
+        type: cloud_functions
+        function_id: d4eis2q4jq3j2ulv93m9
+        service_account_id: ajej7hjes1pp0ldakhm4
+      parameters:
+        - name: path
+          in: path
+          required: true
+          schema:
+            type: string

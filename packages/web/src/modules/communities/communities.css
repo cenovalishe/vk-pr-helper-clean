@@ -1,0 +1,345 @@
+/* FILE: packages/web/src/modules/communities/communities.css */
+/* VERSION: 4.6.0 */
+/* PURPOSE: Styles for the CommunityList accordion and items matching VK UI style */
+
+.community-list {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.community-list-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Accordion Group style */
+.collapsible-category-group {
+  width: 100%;
+  border-bottom: none !important; /* remove divider line */
+  margin-bottom: 4px; /* space between category buttons */
+  box-sizing: border-box;
+}
+
+.collapsible-category-group:last-child {
+  margin-bottom: 0;
+}
+
+.collapsible-category-group:last-child .category-group-content {
+  margin-bottom: 0 !important;
+}
+
+/* Accordion Header Button styled with white background, border, arrow on the left */
+.category-header-btn {
+  display: flex;
+  flex-direction: row-reverse; /* place chevron on the left */
+  justify-content: flex-end; /* align items to the left */
+  align-items: center;
+  gap: 8px; /* space between blue chevron and title */
+  width: 100%;
+  padding: 10px 12px;
+  background: #ffffff !important; /* white background */
+  border: 1px solid #e7e8ec !important;
+  border-radius: 8px;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  outline: none;
+}
+
+.category-header-btn:hover {
+  background-color: #fafbfb !important;
+}
+
+.category-header-btn:active {
+  transform: scale(0.98);
+}
+
+.category-header-btn__title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #2c2d2e;
+}
+
+.category-header-btn__lock-icon {
+  width: 20px;
+  height: 20px;
+  color: #ff9b00 !important; /* warning/restricted amber color */
+}
+
+.category-header-btn__title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2688eb;
+}
+
+.category-header-btn__chevron {
+  width: 20px;
+  height: 20px;
+  color: #2688eb !important; /* blue arrow */
+}
+
+/* Category Content area styled as a separate white modular card when expanded */
+.category-group-content {
+  padding: 12px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background-color: #ffffff !important;
+  border: 1px solid #e7e8ec !important;
+  border-radius: 8px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  margin-top: 4px; /* small space below the category title button */
+  margin-bottom: 8px; /* space before the next category */
+}
+
+.community-category__disclaimer {
+  margin: 0 0 8px 0;
+  padding: 10px 12px;
+  background-color: #f5f6f8; /* VKUI neutral grey background */
+  border-left: 3px solid var(--vkui--color_background_negative, #ff3b30); /* Red warning border */
+  border-radius: 8px; /* matching VKUI cards */
+  font-size: 13px;
+  color: #6f7985; /* neutral grey text */
+  line-height: 1.4;
+}
+
+.community-category__items {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Individual Community Item Row */
+.community-item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: background-color 0.15s ease;
+}
+
+.community-item-row:hover {
+  background-color: #f0f2f5;
+}
+
+.community-item__left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0; /* Enable flex-truncation for text */
+  flex: 1;
+}
+
+/* Custom Minimal Avatar */
+.community-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #f2f3f5;
+  border: 1px solid #dbdee4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.community-avatar__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.community-avatar__initials {
+  font-size: 13px;
+  font-weight: 600;
+  color: #818c99;
+}
+
+.community-item__name {
+  font-size: 14px;
+  color: #2c2d2e;
+  font-weight: 400;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  word-break: break-word;
+  line-height: 1.3;
+  flex-shrink: 1;
+  min-width: 0;
+}
+
+/* Icon Link Button to VK Page */
+.community-item__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: #818c99;
+  background-color: transparent;
+  transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+.community-item__link:hover {
+  background-color: #ebecf0;
+  color: #2688eb;
+}
+
+.community-item__link:active {
+  transform: scale(0.95);
+}
+
+.community-item__link-icon {
+  width: 20px;
+  height: 20px;
+  color: inherit;
+}
+
+/* Highlight styling for our communities */
+.community-item-row--ours {
+  border-left: 3px solid #ff9b00 !important; /* Premium amber left border */
+  border-radius: 4px 8px 8px 4px !important;
+  background-color: #fffaf0 !important; /* Soft amber/gold background tint */
+  padding-left: 5px !important; /* adjust for border */
+}
+
+.community-item-row--ours:hover {
+  background-color: #fff3db !important; /* slightly darker gold on hover */
+}
+
+.community-item-row--ours.community-item-row--disabled {
+  opacity: 1 !important; /* Keep full opacity */
+}
+
+/* Highlight styling for selected community row */
+.community-item-row--selected {
+  background-color: #ebf5fe !important; /* Blue background tint */
+}
+
+.community-item-row--selected:hover {
+  background-color: #dbeaff !important;
+}
+
+/* For isOurs + selected, preserve the amber left border, but row background flips to blue */
+.community-item-row--ours.community-item-row--selected {
+  background-color: #ebf5fe !important;
+}
+
+.community-item-row--ours.community-item-row--selected:hover {
+  background-color: #dbeaff !important;
+}
+
+.community-item__hint {
+  font-size: 11px;
+  color: var(--vkui--color_text_subhead, #818c99);
+  margin-left: 6px;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+/* Mobile: compact rows with larger touch targets */
+@media (max-width: 768px) {
+  .category-header-btn {
+    padding: 12px 10px;
+  }
+  .category-header-btn__title {
+    font-size: 15px;
+  }
+  .category-group-content {
+    padding: 8px;
+    gap: 4px;
+  }
+  .community-item-row {
+    padding: 8px 4px;
+  }
+  .community-avatar {
+    width: 36px;
+    height: 36px;
+  }
+  .community-item__name {
+    font-size: 13px;
+  }
+  .community-item__link {
+    width: 36px;
+    height: 36px;
+  }
+  .community-category__disclaimer {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+}
+
+/* START_BLOCK_MOBILE_OVERRIDES */
+@media (max-width: 768px) {
+  .community-item-row {
+    padding: 4px 6px !important;
+    align-items: center !important;
+  }
+
+  /* Override padding-left on mobile to align ours row with regular row content */
+  .community-item-row--ours {
+    padding-left: 3px !important;
+  }
+
+  .community-item__left {
+    align-items: center !important;
+  }
+
+  .community-avatar {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  .community-item__name {
+    font-size: 13px !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    line-height: 1.3 !important;
+  }
+
+  /* Make mobile drawer redirect icons slightly larger, blue by default, centered, and shift slightly right */
+  .submit-mobile-menu .community-item__link {
+    width: 28px !important;
+    height: 28px !important;
+    color: #2688eb !important;
+    margin-right: -4px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .submit-mobile-menu .community-item__link-icon {
+    width: 18px !important;
+    height: 18px !important;
+    display: block !important;
+  }
+}
+/* END_BLOCK_MOBILE_OVERRIDES */
+
+/* START_CHANGE_SUMMARY
+   LAST_CHANGE: [v4.6.0 - Fix long names overlapping the redirect icon on desktop/mobile by removing flex-shrink: 0, changing white-space to normal and applying -webkit-line-clamp: 2]
+   PREVIOUS_CHANGES:
+     - [v4.5.0 - Add flex-shrink: 0 to .community-item__name to prevent premature name truncation in narrow columns]
+     - [v4.4.0 - Add flex: 1 to .community-item__left to stretch and utilize full width, preventing premature truncation]
+     - [v4.3.0 - Adjust ours row padding-left on mobile to align avatar and content with normal rows]
+     - [v4.2.0 - Increase redirect icon sizes on mobile and add explicit vertical alignment properties to keep elements centered in wrapped rows]
+     - [v4.1.0 - Allow wrapping of community names in mobile overrides block to prevent truncation of long names with ellipsis]
+     - [v4.0.0 - Rename author highlights to ours, add selected highlight, and combine ours+selected highlight styling for Phase-PR-1]
+END_CHANGE_SUMMARY */
